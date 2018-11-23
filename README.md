@@ -10,4 +10,4 @@
 
 ## Run
 
-`docker run --rm --name kea --network=host isc-kea`
+`docker-compose up`
