@@ -11,7 +11,7 @@ RUN yum -y install epel-release \
     && yum -y install deltarpm \
     && yum -y install cmake bison flex pcre-devel libev-devel protobuf-c-devel protobuf-c-compiler make rpm-build doxygen swig which \
     && yum -y install autoconf automake libtool gtest-devel \
-    && yum -y install openssl-devel \lsyum 
+    && yum -y install openssl-devel \
     && yum -y install git wget \
     && yum -y install log4cplus-devel ccache libcmocka-devel \
     && yum -y install mariadb-devel
