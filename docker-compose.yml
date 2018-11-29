@@ -6,6 +6,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./kea-dhcp4.conf:/usr/local/etc/kea/kea-dhcp4.conf
+      - ./kea-ctrl-agent.conf:/usr/local/etc/kea/kea-ctrl-agent.conf
     network_mode: host
     depends_on:
       - kea-db

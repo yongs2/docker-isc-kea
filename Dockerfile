@@ -56,9 +56,25 @@ RUN yum -y install epel-release \
     && yum -y install log4cplus \
     && yum -y install mariadb
 
+# copy kea-dhcp from builder
 COPY --from=builder /usr/local /usr/local/
 
+WORKDIR /root
+
+# install kea-anterius (Web UI)
+RUN yum -y install nodejs git \
+    && git clone https://github.com/isc-projects/kea-anterius.git \
+    && cd kea-anterius \
+    && npm install 
+
+ENV PATH=/usr/local/sbin:/usr/local/bin:${PATH}
 ENV LD_LIBRARY_PATH=/usr/lib:/usr/lib64/mysql:${LD_LIBRARY_PATH}
 
-ENTRYPOINT ["/usr/local/sbin/kea-dhcp4"]
-CMD ["-c", "/usr/local/etc/kea/kea-dhcp4.conf"]
+ADD startup.sh /root/startup.sh
+
+RUN cd /root/ \
+    && chmod +x /root/startup.sh
+
+CMD ["/root/startup.sh"]
+
+EXPOSE 67 68 8000 8080 3000

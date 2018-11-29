@@ -5,7 +5,7 @@ build:
 
 .PHONY: run
 run:
-	docker run --rm --name kea --network=host isc-kea || :
+	docker run --rm --name kea --network=host -v `pwd`/kea-dhcp4.conf:/usr/local/etc/kea/kea-dhcp4.conf -v `pwd`/kea-ctrl-agent.conf:/usr/local/etc/kea/kea-ctrl-agent.conf isc-kea || :
 
 .PHONY: exec
 exec:
